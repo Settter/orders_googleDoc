@@ -8,7 +8,7 @@ from starlette.templating import Jinja2Templates
 from db_methods import total
 from doc_save import save_db_values
 from init import app, UV
-from bot import main_bot
+from bot import mass_message, start_bot
 from matplot import graf_img
 
 templates = Jinja2Templates(directory="templates")
@@ -25,6 +25,7 @@ def autoupdate():
     while True:
         save_db_values()
         graf_img()
+        mass_message()
         time.sleep(60)
     pass
 
@@ -36,4 +37,4 @@ def run_app():
 if __name__ == '__main__':
     Thread(target=autoupdate).start()
     Thread(target=run_app).start()
-    Thread(target=main_bot).start()
+    Thread(target=start_bot).start()
