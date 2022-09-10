@@ -6,4 +6,4 @@ To run project you need download and open the project, change the db_password va
 
 Для запуска необходимо скачать и открыть проект, изменить переменную db_password в файле db_methods на свой пароль от postgresql, скачать requirments и запустить файл App.py
 
-При запуске в docker контэйнере пропишите команду "docker run --name psql-container -p 5432:5432 -e POSTGRES_PASSWORD=myPassword -d postgres" для запуска локальной копии бд в docker, затем измените переменную db_password в файле db_methods на свой пароль, а также измините параметр "host" в 2 методах psycopg2.connect файла db_methods.py, затем создайте и запустите docker контэйнер с проектом.
+При запуске в docker контэйнере пропишите команду "docker run --name psql-container -p 5432:5432 -e POSTGRES_PASSWORD=myPassword -d postgres" для запуска локальной копии бд в docker, затем измените переменную db_password в файле db_methods на свой пароль, а также измините параметр "host" в 2 методах psycopg2.connect файла db_methods.py на 172.17.0.2, затем создайте и запустите docker контэйнер с проектом.
