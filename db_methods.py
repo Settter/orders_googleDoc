@@ -5,7 +5,7 @@ from psycopg2.extensions import ISOLATION_LEVEL_AUTOCOMMIT
 # your postgres password
 db_password = 'lololo2000'
 
-# create database union method
+# create database union
 def create_database(name_Database, password):
     connect = psycopg2.connect(dbname='postgres',
                                user='postgres',
@@ -33,7 +33,7 @@ con = psycopg2.connect(
 )
 cur = con.cursor()
 
-# union google doc table template
+# google doc table
 create_users_table = """
 CREATE TABLE IF NOT EXISTS doc_iform (
   number_ INTEGER,
@@ -59,7 +59,7 @@ def create_table(connection, table):
 # create google doc table
 create_table(con, create_users_table)
 
-# union bot.py users id table template
+# bot users id table
 user_id_table = """
     CREATE TABLE IF NOT EXISTS user_id (
     user_id INTEGER,
@@ -70,7 +70,7 @@ user_id_table = """
 # create users id table
 create_table(con, user_id_table)
 
-# save google doc inform method
+# save google doc information
 def save_values(number, order_number, usd_cost, delivery_time, rub_cost):
     cursor = con.cursor()
     cursor.execute("""
@@ -80,20 +80,20 @@ def save_values(number, order_number, usd_cost, delivery_time, rub_cost):
     con.commit()
     pass
 
-# delete google doc inform method
+# delete google doc information
 def delete_values():
     cursor = con.cursor()
     cursor.execute('truncate table doc_iform')
     pass
 
-# get google doc inform method
+# get google doc information
 def get_values():
     cursor = con.cursor()
     cursor.execute("SELECT number_, order_number, usd_cost, rub_cost, delivery_time FROM doc_iform;")
     rows = cursor.fetchall()
     return rows
 
-# save users id method
+# save users id
 def set_user_id(user_id):
     cursor = con.cursor()
     cursor.execute("""
@@ -104,14 +104,14 @@ def set_user_id(user_id):
     print('success id save')
     pass
 
-# get users id method
+# get users id
 def get_user_id():
     cursor = con.cursor()
     cursor.execute("SELECT user_id FROM user_id;")
     rows = cursor.fetchall()
     return rows
 
-# count total earnings in rubles
+# count total sum in rubles
 def total():
     Total = 0
     rows = get_values()

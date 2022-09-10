@@ -11,16 +11,20 @@ from init import app, UV
 from bot import mass_message, start_bot
 from matplot import graf_img
 
+# add templates
 templates = Jinja2Templates(directory="templates")
+# add static files path
 app.mount('/static', StaticFiles(directory='static'), name='static')
 
 
+# render main site page
 @app.get("/")
 def main(request: Request):
+    print('render html')
     return templates.TemplateResponse('index.html', {'request': request, 'total': total()})
 
 
-# updating db table and chart on site
+# updating db table and chart on site and check bot mass mailing
 def autoupdate():
     while True:
         save_db_values()
@@ -28,6 +32,7 @@ def autoupdate():
         mass_message()
         time.sleep(60)
     pass
+
 
 # run site
 def run_app():
