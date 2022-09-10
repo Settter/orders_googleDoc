@@ -25,4 +25,5 @@ def save_db_values():
     while i < x:
         save_values(values_list1[i], values_list2[i], values_list3[i], values_list4[i], round(get_rub_value(int(values_list3[i])), 2))
         i += 1
+    print("end save values")
     pass

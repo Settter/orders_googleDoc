@@ -17,3 +17,4 @@ def graf_img():
 
     ax.plot(h, squares)
     plt.savefig('static/img/graf', transparent=True)
+    print('set image')
