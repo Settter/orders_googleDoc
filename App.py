@@ -5,7 +5,7 @@ from starlette.requests import Request
 from starlette.staticfiles import StaticFiles
 from starlette.templating import Jinja2Templates
 
-from db_methods import total
+from db_methods import total, get_values
 from doc_save import save_db_values
 from init import app, UV
 from bot import start_bot
@@ -21,7 +21,8 @@ app.mount('/static', StaticFiles(directory='static'), name='static')
 @app.get("/")
 def main(request: Request):
     print('render html')
-    return templates.TemplateResponse('index.html', {'request': request, 'total': total()})
+    return templates.TemplateResponse('index.html',
+                                      {'request': request, 'total': total(), 'all_val': get_values()})
 
 
 # updating db table and chart on site and check bot mass mailing
